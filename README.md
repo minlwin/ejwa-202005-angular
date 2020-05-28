@@ -1,2 +1,2 @@
 # ejwa-202005-angular
-Angular Projects for Enterprise Java with Android
+Angular Projects for Enterprise Java with Android Online Class
