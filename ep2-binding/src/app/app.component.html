@@ -1,0 +1,14 @@
+<h1>Variable Binding In Template</h1>
+
+
+<input (keyup)="0" type="text" #name> {{ name.value }}
+
+<br>
+
+<select (change)="0" #type>
+  <option value="opt1">Option 1</option>
+  <option value="opt2">Option 2</option>
+  <option value="opt3">Option 3</option>
+</select>
+
+{{ type.value }}

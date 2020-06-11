@@ -1,0 +1,11 @@
+<h1>Locations</h1>
+
+<ul>
+  <li *ngFor="let item of locations" (click)="selectDivision(item)">{{ item.name }}</li>
+</ul>
+
+<h3><span *ngIf="selectedDivision">{{ selectedDivision.name }}</span> Townships</h3>
+
+<ul>
+  <li *ngFor="let item of townships">{{ item.name }}</li>
+</ul>
