@@ -1,0 +1,73 @@
+<div class="ui container">
+
+    <div class="ui segment">
+        <div class="ui header">Address Management</div>
+
+        <form [formGroup]="form" class="ui form">
+
+            <div class="two fields">
+                <div class="field">
+                    <label>Division</label>
+                    <select #division (change)="changeDivision(division.value)" class="ui dropdown">
+                        <option value="">Select Division</option>
+                        <option *ngFor="let item of divisions" [value]="item.id">{{item.name}}</option>
+                    </select>
+                </div>
+
+                <div class="field">
+                    <label>Township</label>
+                    <select formControlName="township" class="ui dropdown">
+                        <option value="">Select Township</option>
+                        <option *ngFor="let item of townships" [ngValue]="item">{{item.name}}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="two fields">
+                <div class="field">
+                    <label>Street</label>
+                    <div class="ui icon input">
+                        <input formControlName="street" type="text" placeholder="Enter Street Address">
+                        <i class="{{ form.get('street').valid ? 'check' : 'delete'}} icon"></i>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label>Address</label>
+                    <div class="ui icon input">
+                        <input formControlName="address" type="text" placeholder="Enter Address">
+                        <i class="{{ form.get('address').valid ? 'check' : 'delete' }} icon"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="field">
+                <button (click)="save()" class="ui icon button" [disabled]="!form.valid">
+                    <i class="save icon"></i>
+                    Save
+                </button>
+            </div>
+        </form>
+
+        <table class="ui table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Division</th>
+                    <th>Township</th>
+                    <th>Street</th>
+                    <th>Address</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of list">
+                    <td>{{item.id}}</td>
+                    <td>{{item.township.division.name}}</td>
+                    <td>{{item.township.name}}</td>
+                    <td>{{item.street}}</td>
+                    <td>{{item.address}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
