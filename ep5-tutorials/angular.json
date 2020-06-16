@@ -1,0 +1,198 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "api-client": {
+      "projectType": "library",
+      "root": "projects/api-client",
+      "sourceRoot": "projects/api-client/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/api-client/tsconfig.lib.json",
+            "project": "projects/api-client/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/api-client/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/api-client/src/test.ts",
+            "tsConfig": "projects/api-client/tsconfig.spec.json",
+            "karmaConfig": "projects/api-client/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/api-client/tsconfig.lib.json",
+              "projects/api-client/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "ep1-crud-address": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "inlineStyle": true,
+          "skipTests": true
+        },
+        "@schematics/angular:class": {
+          "skipTests": true
+        },
+        "@schematics/angular:directive": {
+          "skipTests": true
+        },
+        "@schematics/angular:guard": {
+          "skipTests": true
+        },
+        "@schematics/angular:interceptor": {
+          "skipTests": true
+        },
+        "@schematics/angular:module": {
+          "skipTests": true
+        },
+        "@schematics/angular:pipe": {
+          "skipTests": true
+        },
+        "@schematics/angular:service": {
+          "skipTests": true
+        }
+      },
+      "root": "projects/ep1-crud-address",
+      "sourceRoot": "projects/ep1-crud-address/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/ep1-crud-address",
+            "index": "projects/ep1-crud-address/src/index.html",
+            "main": "projects/ep1-crud-address/src/main.ts",
+            "polyfills": "projects/ep1-crud-address/src/polyfills.ts",
+            "tsConfig": "projects/ep1-crud-address/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/ep1-crud-address/src/favicon.ico",
+              "projects/ep1-crud-address/src/assets"
+            ],
+            "styles": [
+              "projects/ep1-crud-address/src/styles.css",
+              "node_modules/fomantic-ui-css/semantic.min.css"
+            ],
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/fomantic-ui-css/semantic.min.js"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/ep1-crud-address/src/environments/environment.ts",
+                  "with": "projects/ep1-crud-address/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "ep1-crud-address:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "ep1-crud-address:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "ep1-crud-address:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ep1-crud-address/src/test.ts",
+            "polyfills": "projects/ep1-crud-address/src/polyfills.ts",
+            "tsConfig": "projects/ep1-crud-address/tsconfig.spec.json",
+            "karmaConfig": "projects/ep1-crud-address/karma.conf.js",
+            "assets": [
+              "projects/ep1-crud-address/src/favicon.ico",
+              "projects/ep1-crud-address/src/assets"
+            ],
+            "styles": [
+              "projects/ep1-crud-address/src/styles.css"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ep1-crud-address/tsconfig.app.json",
+              "projects/ep1-crud-address/tsconfig.spec.json",
+              "projects/ep1-crud-address/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/ep1-crud-address/e2e/protractor.conf.js",
+            "devServerTarget": "ep1-crud-address:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "ep1-crud-address:serve:production"
+            }
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "analytics": "297f3800-fecd-4478-99b1-ff0a1cae4b58"
+  },
+  "defaultProject": "api-client"
+}
