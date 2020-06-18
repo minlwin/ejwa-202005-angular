@@ -17,11 +17,12 @@ export class AddressService extends AbstractService {
   }
 
   search(form: any) {
+
     let params = new HttpParams
     params = params.append("division", form.division)
     params = params.append("township", form.township)
     params = params.append("address", form.address)
 
-    return this.http.get<any[]>(`${this.api}/search`)
+    return this.http.get<any[]>(`${this.api}/search`, { params: params })
   }
 }

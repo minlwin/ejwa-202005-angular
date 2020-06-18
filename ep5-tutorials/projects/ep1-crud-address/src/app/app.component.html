@@ -17,14 +17,14 @@
         </div>
 
         <div class="field">
-          <select class="ui dropdown">
+          <select formControlName="township" class="ui dropdown">
             <option value="0">All Townships</option>
             <option *ngFor="let item of schTownships" [value]="item.id">{{item.name}}</option>
           </select>
         </div>
 
         <div class="field">
-          <input type="text" placeholder="Search Address">
+          <input type="text" formControlName="address" placeholder="Search Address">
         </div>
 
         <div class="field">
@@ -54,8 +54,8 @@
     <tbody>
       <tr *ngFor="let item of list">
         <td>{{item.id}}</td>
-        <td>{{item.township?.divison?.name}}</td>
-        <td>{{item.township?.name}}</td>
+        <td>{{item.township.division.name}}</td>
+        <td>{{item.township.name}}</td>
         <td>{{item.street}}</td>
         <td>{{item.address}}</td>
         <td>
@@ -80,7 +80,7 @@
 
       <div class="field">
         <label>Division</label>
-        <select #divisionSelect (change)="changeDivision(divisionSelect.value)" class="ui dropdown">
+        <select formControlName="division" class="ui dropdown">
           <option *ngFor="let item of divisions" [value]="item.id">{{item.name}}</option>
         </select>
       </div>
@@ -104,6 +104,9 @@
 
     </form>
     <div class="actions">
+      <button class="ui cancel icon button">
+        <i class="delete icon"></i> Cancel
+      </button>
       <button (click)="save()" class="ui icon red button">
         <i class="save icon"></i> Save
       </button>
