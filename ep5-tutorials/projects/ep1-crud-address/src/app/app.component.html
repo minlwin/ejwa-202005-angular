@@ -81,6 +81,7 @@
       <div class="field">
         <label>Division</label>
         <select formControlName="division" class="ui dropdown">
+          <option value="0">Select Division</option>
           <option *ngFor="let item of divisions" [value]="item.id">{{item.name}}</option>
         </select>
       </div>
@@ -88,7 +89,8 @@
       <div class="field">
         <label>Township</label>
         <select formControlName="township" class="ui dropdown">
-          <option *ngFor="let item of edtTownships" [ngValue]="item">{{item.name}}</option>
+          <option value="0">Select Township</option>
+          <option *ngFor="let item of edtTownships" [value]="item.id">{{item.name}}</option>
         </select>
       </div>
 

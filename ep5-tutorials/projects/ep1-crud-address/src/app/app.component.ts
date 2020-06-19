@@ -57,8 +57,17 @@ export class AppComponent implements OnInit {
       townships => {
         this.edtTownships = townships
         let township = this.editForm.get('township').value
-        this.editForm.get('township').reset()
-        this.editForm.get('township').setValue(township, { emitModelToViewChange: true, emitEvent: true })
+
+        let id = 0
+
+        for (let tsh of townships) {
+          if (tsh.id == township.id) {
+            id = tsh.id
+          }
+        }
+
+        this.editForm.get('township').patchValue(id)
+        $('.ui.dropdown').dropdown()
       }
     ))
   }
@@ -71,7 +80,10 @@ export class AppComponent implements OnInit {
   save() {
     let data = this.editForm.value
     delete data.division
-    this.addService.save(this.editForm.value).subscribe(() => {
+    let township = this.edtTownships.filter(a => a.id == data.township).pop()
+    data.township = township
+
+    this.addService.save(data).subscribe(() => {
       $('.ui.modal').modal('hide')
       this.search()
     })
@@ -79,9 +91,9 @@ export class AppComponent implements OnInit {
 
   edit(data: any) {
     // change division
-    console.log(data)
     this.editForm.get('division').patchValue(data.township.division.id)
     this.editForm.patchValue(data)
+
     $('.ui.dropdown').dropdown()
     this.showDialog()
   }
@@ -102,11 +114,9 @@ export class AppComponent implements OnInit {
 }
 
 class Address {
-  constructor(
-    public id = 0,
-    public division = 0,
-    public township: any = null,
-    public street: string = "",
-    public address: string = ""
-  ) { }
+  public id = 0
+  public division = 0
+  public township = 0
+  public street: string = ""
+  public address: string = ""
 }
