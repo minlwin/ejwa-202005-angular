@@ -5,7 +5,6 @@ import { CompaniesComponent } from './companies/companies.component';
 import { EditCompanyComponent } from './companies/edit-company/edit-company.component';
 import { EmployersComponent } from './employers/employers.component';
 
-
 const routes: Routes = [
   { path: 'companies', component: CompaniesComponent },
   { path: 'addresses', component: AddressesComponent },

@@ -9,9 +9,7 @@
             <div class="fields">
                 <div class="field">
                     <label>Category</label>
-                    <select formControlName="category" class="ui dropdown">
-                        <option value="0">All Category</option>
-                    </select>
+                    <ui-dropdown [list]="categories" name="Category" [control]="form.get('category')"></ui-dropdown>
                 </div>
 
                 <div class="field">
@@ -21,13 +19,13 @@
 
                 <div class="field">
                     <label>&nbsp;</label>
-                    <button class="ui red icon button">
+                    <button (click)="search()" class="ui red icon button">
                         <i class="search icon"></i> Search
                     </button>
                 </div>
                 <div class="field">
                     <label>&nbsp;</label>
-                    <button [routerLink]="['/edit-company']" routerLinkActive="active" class="ui purple icon button">
+                    <button [routerLink]="['/edit-company']" class="ui purple icon button">
                         <i class="plus icon"></i> Add New
                     </button>
                 </div>
@@ -36,7 +34,7 @@
     </div>
 
     <!-- Table -->
-    <table class="ui table">
+    <table class="ui table" *ngIf="list.length">
         <thead>
             <tr>
                 <th>ID</th>
@@ -56,4 +54,8 @@
             </tr>
         </tbody>
     </table>
+
+    <div class="ui message" *ngIf="!list.length">
+        There is no data
+    </div>
 </div>

@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http'
+import { HttpClient, HttpParams } from '@angular/common/http'
 
 export abstract class AbstractService {
 
@@ -12,5 +12,15 @@ export abstract class AbstractService {
 
     findAll() {
         return this.http.get<any[]>(this.api)
+    }
+
+    search(form: any) {
+        let param = new HttpParams
+
+        for (let key in form) {
+            param = param.append(key, form[key])
+        }
+
+        return this.http.get<any[]>(`${this.api}/search`, { params: param })
     }
 }

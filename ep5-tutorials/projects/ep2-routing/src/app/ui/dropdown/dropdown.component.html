@@ -1,0 +1,4 @@
+<select #dropdown [formControl]="control" class="ui dropdown">
+    <option value="">Select {{name}}</option>
+    <option *ngFor="let item of list" [value]="item">{{item}}</option>
+</select>
