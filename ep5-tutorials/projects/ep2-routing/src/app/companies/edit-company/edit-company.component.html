@@ -1,1 +1,163 @@
-<p>edit-company works!</p>
+<div [formGroup]="form" class="ui container">
+
+    <h1>{{ edit ? 'Edit' : 'Add'}} Company</h1>
+
+    <div id="tabHeader" class="ui pointing menu">
+        <a class="item" [ngClass]="{'active': isActive('company')}" data-tab="company">Company Information</a>
+        <a class="item" [ngClass]="{'active': isActive('owner')}" data-tab="owner">Owner Information</a>
+        <a class="item" [ngClass]="{'active': isActive('others')}" data-tab="others">Other Properties</a>
+
+        <div class="right menu">
+            <a class="item" (click)="save()">
+                <i class="save icon"></i> Save
+            </a>
+        </div>
+    </div>
+
+    <div class="ui tab" [ngClass]="{'active': isActive('company')}" data-tab="company">
+        <div class="ui clearing segment">
+            <div class="ui form">
+                <div class="two fields">
+                    <div class="field">
+                        <label>Name</label>
+                        <input formControlName="name" type="text" placeholder="Enter Name">
+                    </div>
+                    <div class="field">
+                        <label>Category</label>
+                        <input formControlName="category" type="text" placeholder="Enter Name">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label>Home Page</label>
+                    <input formControlName="homePage" type="text" placeholder="Enter Home Page">
+                </div>
+
+                <div class="two fields">
+
+                    <div class="field">
+                        <label>Phone</label>
+                        <input formControlName="phone" type="text" placeholder="Enter Phone Number">
+                    </div>
+
+                    <div class="field">
+                        <label>Email</label>
+                        <input formControlName="email" type="text" placeholder="Enter Email Address">
+                    </div>
+                </div>
+
+                <div formGroupName="address" class="two fields">
+                    <div class="field">
+                        <label>Division</label>
+                        <select #division (change)="changeDivision(division.value)" class="ui dropdown">
+                            <option value="">Select Division</option>
+                            <option *ngFor="let item of divisions" [value]="item.id">{{item.name}}</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label>Township</label>
+                        <select #township formControlName="township" class="ui dropdown">
+                            <option value="0">Select Township</option>
+                            <option *ngFor="let item of townships" [value]="item.id">{{item.name}}</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div formGroupName="address" class="two fields">
+
+                    <div class="field">
+                        <label>Street</label>
+                        <input formControlName="street" type="text" placeholder="Enter Street">
+                    </div>
+
+                    <div class="field">
+                        <label>Address</label>
+                        <input formControlName="address" type="text" placeholder="Enter Address">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label>Information</label>
+                    <textarea formControlName="greeting" rows="3"></textarea>
+                </div>
+
+                <div class="field">
+                    <button (click)="changeTab('owner')" type="button" class="ui right floated blue button">
+                        Next
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div formGroupName="owner" class="ui tab" [ngClass]="{'active': isActive('owner')}" data-tab="owner">
+
+        <div class="ui clearing segment">
+
+            <div class="ui grid">
+                <div class="row">
+                    <div class="six wide column">
+                        <img src="https://www.clipartmax.com/png/middle/150-1503869_black-camera-clip-art-at-clker-camara-fotografica-vector-png.png"
+                            alt="">
+                    </div>
+
+                    <div class="ten wide column">
+
+                        <div class="ui form">
+                            <div formGroupName="profile" class="field">
+                                <label>Name</label>
+                                <input formControlName="name" type="text">
+                            </div>
+                            <div formGroupName="profile" class="field">
+                                <label>Phone</label>
+                                <input formControlName="phone" type="text">
+                            </div>
+                            <div class="field">
+                                <label>Email</label>
+                                <input formControlName="login" type="text">
+                            </div>
+                            <div formGroupName="profile" class="field">
+                                <label>Greeting</label>
+                                <textarea formControlName="greeting" rows="5"></textarea>
+                            </div>
+
+                            <div class="field">
+                                <button class="ui right floated blue button">Next</button>
+                                <button class="ui right floated button">Previous</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="ui tab" [ngClass]="{'active': isActive('others')}" data-tab="others">
+        <div formArrayName="properties" class="ui segment">
+            <div *ngFor="let item of properties.controls; let i = index" class="ui form">
+                <div class="fields" [formGroupName]="i">
+                    <div class="four wide field">
+                        <label *ngIf="i == 0">Name</label>
+                        <input formControlName="name" type="text">
+                    </div>
+                    <div class="ten wide field">
+                        <label *ngIf="i == 0">Value</label>
+                        <input formControlName="value" type="text">
+                    </div>
+                    <div class="two field">
+                        <label *ngIf="i == 0">&nbsp;</label>
+                        <button (click)="deleteProperty(i)" class="ui icon button">
+                            <i class="delete icon"></i>
+                        </button>
+                        <button (click)="addProperty()" *ngIf="i == properties.length - 1" class="ui icon button">
+                            <i class="plus icon"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
