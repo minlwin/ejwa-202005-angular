@@ -2,15 +2,15 @@
 
     <h1>{{ edit ? 'Edit' : 'Add'}} Company</h1>
 
-    <div id="tabHeader" class="ui pointing menu">
-        <a class="item" [ngClass]="{'active': isActive('company')}" data-tab="company">Company Information</a>
-        <a class="item" [ngClass]="{'active': isActive('owner')}" data-tab="owner">Owner Information</a>
-        <a class="item" [ngClass]="{'active': isActive('others')}" data-tab="others">Other Properties</a>
-
-        <div class="right menu">
-            <a class="item" (click)="save()">
-                <i class="save icon"></i> Save
-            </a>
+    <div class="ui segment">
+        <div class="content">
+            <div class="ui large breadcrumb">
+                <span [ngClass]="{'active': isActive('company')}" class="section">Company Information</span>
+                <i class="right chevron icon divider"></i>
+                <span [ngClass]="{'active': isActive('owner')}" class="section">Owner Information</span>
+                <i class="right chevron icon divider"></i>
+                <span [ngClass]="{'active': isActive('others')}" class="section">Other Properties</span>
+            </div>
         </div>
     </div>
 
@@ -81,12 +81,12 @@
                     <textarea formControlName="greeting" rows="3"></textarea>
                 </div>
 
-                <div class="field">
-                    <button (click)="changeTab('owner')" type="button" class="ui right floated blue button">
-                        Next
-                    </button>
-                </div>
             </div>
+        </div>
+        <div class="field">
+            <button (click)="changeTab('owner')" type="button" class="ui right floated blue button">
+                Next
+            </button>
         </div>
     </div>
 
@@ -121,10 +121,6 @@
                                 <textarea formControlName="greeting" rows="5"></textarea>
                             </div>
 
-                            <div class="field">
-                                <button class="ui right floated blue button">Next</button>
-                                <button class="ui right floated button">Previous</button>
-                            </div>
                         </div>
 
                     </div>
@@ -132,11 +128,15 @@
             </div>
 
         </div>
+        <div class="field">
+            <button (click)="changeTab('others')" class="ui right floated blue button">Next</button>
+            <button (click)="changeTab('company')" class="ui right floated button">Previous</button>
+        </div>
 
     </div>
 
     <div class="ui tab" [ngClass]="{'active': isActive('others')}" data-tab="others">
-        <div formArrayName="properties" class="ui segment">
+        <div formArrayName="properties" class="ui clearing segment">
             <div *ngFor="let item of properties.controls; let i = index" class="ui form">
                 <div class="fields" [formGroupName]="i">
                     <div class="four wide field">
@@ -158,6 +158,12 @@
                     </div>
                 </div>
             </div>
+
         </div>
+        <div class="field">
+            <button (click)="save()" class="ui right floated blue button">Save</button>
+            <button (click)="changeTab('owner')" class="ui right floated button">Previous</button>
+        </div>
+
     </div>
 </div>

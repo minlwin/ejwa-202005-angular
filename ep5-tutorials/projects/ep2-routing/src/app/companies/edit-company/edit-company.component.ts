@@ -75,7 +75,6 @@ export class EditCompanyComponent implements OnInit {
 
   ngOnInit(): void {
     this.divService.findAll().subscribe(data => this.divisions = data)
-    $('#tabHeader .item').tab()
     this.addProperty()
     $('.ui.dropdown').dropdown()
   }
