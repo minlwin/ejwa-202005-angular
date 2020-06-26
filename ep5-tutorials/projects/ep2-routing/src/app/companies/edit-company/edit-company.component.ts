@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
-import { CompanyService, DivisionService, TownshipService } from 'projects/api-client/src/public-api';
+import { Router } from '@angular/router';
+import { CompanyService, DivisionService, EmployerService, ProfileService, TownshipService } from 'projects/api-client/src/public-api';
 
 declare let $: any
 
@@ -27,9 +28,12 @@ export class EditCompanyComponent implements OnInit {
 
   constructor(
     private builder: FormBuilder,
+    private empService: EmployerService,
+    private proService: ProfileService,
     private comService: CompanyService,
     private divService: DivisionService,
-    private tshService: TownshipService
+    private tshService: TownshipService,
+    private router: Router
   ) {
 
     this.profileForm = builder.group({
@@ -107,7 +111,26 @@ export class EditCompanyComponent implements OnInit {
     let obj = this.form.value
     let tshId = obj.address.township
     obj.address.township = this.townships.filter(a => a.id == tshId).pop()
-    console.log(obj)
+
+    // create employer
+    let owner = this.ownerForm.value
+    delete owner.profile
+    this.empService.create(owner).subscribe(newOwner => {
+
+      // create profile
+      this.proService.saveProfile(newOwner.login, this.profileForm.value).subscribe(newProfile => {
+
+        // create company
+        newOwner.profile = newProfile
+        let company = this.form.value
+        company.owner = newOwner
+
+        this.comService.save(company).subscribe(() => {
+          this.router.navigate(['/companies'])
+        })
+
+      })
+    })
   }
 
   get edit() {

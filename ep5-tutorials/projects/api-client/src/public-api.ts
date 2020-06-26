@@ -6,5 +6,7 @@ export * from './lib/api-client.module';
 export * from './lib/services/address.service';
 export * from './lib/services/company.service';
 export * from './lib/services/division.service';
+export * from './lib/services/employer.service';
+export * from './lib/services/profile.service';
 export * from './lib/services/township.service';
 
