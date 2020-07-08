@@ -1,0 +1,21 @@
+<nav class="ui secondary inverted blue menu">
+
+  <div class="ui container">
+    <a href="" class="item active"><i class="search icon"></i> Job Search</a>
+
+    <div class="right menu">
+      <a (click)="signInComponent.showDialog()" class="item">
+        <i class="sign in icon"></i> Sign In
+      </a>
+      <a (click)="signUpComponent.showDialog()" class="item">
+        <i class="sign in icon"></i> Sign Up
+      </a>
+    </div>
+  </div>
+</nav>
+
+<app-sign-up></app-sign-up>
+
+<app-sing-in></app-sing-in>
+
+<router-outlet></router-outlet>
