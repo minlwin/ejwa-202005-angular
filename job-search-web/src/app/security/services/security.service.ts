@@ -25,7 +25,11 @@ export class SecurityService {
   }
 
   private set login(data: any) {
-    localStorage.setItem(LOGIN, JSON.stringify(data))
+    if (data.success) {
+      localStorage.setItem(LOGIN, JSON.stringify(data))
+    } else {
+      localStorage.removeItem(LOGIN)
+    }
   }
 
   private get login(): any {
@@ -45,6 +49,10 @@ export class SecurityService {
   }
 
   set token(data: string) {
-    localStorage.setItem(TOKEN, data)
+    if (data) {
+      localStorage.setItem(TOKEN, data)
+    } else {
+      localStorage.removeItem(TOKEN)
+    }
   }
 }

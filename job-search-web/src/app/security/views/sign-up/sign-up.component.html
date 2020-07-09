@@ -4,28 +4,28 @@
     </div>
 
     <div class="content">
-        <div class="ui form">
-
+        <div [formGroup]="form" class="ui form">
+            <div class="ui message" *ngIf="message">{{message}}</div>
             <div class="field">
                 <label>User Name</label>
-                <input type="text" placeholder="Enter Your Name">
+                <input formControlName="name" type="text" placeholder="Enter Your Name">
             </div>
             <div class="field">
                 <label>Email</label>
-                <input type="text" placeholder="Enter Email Address">
+                <input formControlName="email" type="text" placeholder="Enter Email Address">
             </div>
             <div class="field">
                 <label>Password</label>
-                <input type="password" placeholder="Enter Password">
+                <input formControlName="password" type="password" placeholder="Enter Password">
             </div>
         </div>
     </div>
 
     <div class="actions">
-        <button class="ui blue button">
+        <button (click)="candidateSignUp()" [disabled]="!form.valid" class="ui blue button">
             Sign Up Candidate
         </button>
-        <button class="ui purple button">
+        <button (click)="employerSignUp()" [disabled]="!form.valid" class="ui purple button">
             Sign Up Employer
         </button>
     </div>

@@ -13,6 +13,7 @@ declare let $: any
 export class SingInComponent implements OnInit {
 
   form: FormGroup
+  message: string
 
   constructor(
     builder: FormBuilder,
@@ -30,7 +31,13 @@ export class SingInComponent implements OnInit {
   login() {
     if (this.form.valid) {
       this.security.signIn(this.form.value).subscribe(result => {
+        if (result.success) {
+          // navigate homes accordint to their role
 
+          $('#signInDialog').modal('hide')
+        } else {
+          this.message = result.message
+        }
       })
     }
   }

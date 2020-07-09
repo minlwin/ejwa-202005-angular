@@ -13,6 +13,7 @@ declare let $: any
 })
 export class SignUpComponent implements OnInit {
 
+  message: string
   form: FormGroup
 
   constructor(builder: FormBuilder, private security: SecurityService) {
@@ -46,7 +47,11 @@ export class SignUpComponent implements OnInit {
 
   private handleResult(requst: Observable<any>) {
     requst.subscribe(data => {
-
+      if (data.success) {
+        $('#signUpDialog').modal('hide')
+      } else {
+        this.message = data.message
+      }
     })
   }
 }

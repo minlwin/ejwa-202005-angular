@@ -6,7 +6,7 @@ import {
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { SecurityService } from './Security.service';
+import { SecurityService } from './security.service';
 
 const TOKEN = "jdc-jwt-token"
 
@@ -24,6 +24,7 @@ export class JwtTokenInterceptor implements HttpInterceptor {
     }
 
     return next.handle(clone).pipe(tap(event => {
+      console.log(event)
       if (event instanceof HttpResponse) {
         this.security.token = event.headers.get(TOKEN)
       }
