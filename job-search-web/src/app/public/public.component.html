@@ -1,0 +1,53 @@
+<!-- Search -->
+<div class="ui very padded raised segment">
+    <div class="ui header">
+        <i class="search icon"></i> Job Search
+    </div>
+
+    <div class="ui content">
+        <div [formGroup]="form" class="ui form">
+            <div class="three fields">
+                <div class="fluid field">
+                    <div class="ui left icon labeled input">
+                        <i class="briefcase icon"></i>
+                        <input formControlName="job" type="text" placeholder="Search by Job Type">
+                    </div>
+                </div>
+                <div class="fluid field">
+                    <div class="ui left icon labeled input">
+                        <i class="map icon"></i>
+                        <input formControlName="location" type="text" placeholder="Search by Location">
+                    </div>
+                </div>
+                <div class="field">
+                    <button (click)="search()" class="ui blue icon labeled button">
+                        <i class="search icon"></i> Search
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Popular Jobs -->
+<h3>Popular Jobs</h3>
+
+<div class="ui three column grid">
+    <div class="column" *ngFor="let item of list">
+        <div class="ui fluid link card" (click)="showDetails(item.id)">
+            <div class="image">
+                <img src="assets/images/job-image.png" alt="">
+            </div>
+            <div class="content">
+                <div class="header">{{item.title}}</div>
+                <div class="extra">
+                    <span>{{item.company}}</span>
+                    <span class="right floated">{{item.location}}</span>
+                </div>
+            </div>
+            <div class="extra content">
+                <span><i class="user icon"></i> 120</span>
+                <span class="right floated">{{item.applyDate}}</span>
+            </div>
+        </div>
+    </div>
+</div>
