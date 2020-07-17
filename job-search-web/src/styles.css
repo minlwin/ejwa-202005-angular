@@ -2,3 +2,11 @@
 .app-page-body {
     margin-top: 60px !important;
 }
+
+.app-right {
+    float: right;
+}
+
+.app-mb-8 {
+    margin-bottom: 8px !important;
+}

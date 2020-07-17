@@ -9,13 +9,13 @@ import { JobOffersService } from '../../services/job-offers.service';
 })
 export class JobDetailsComponent implements OnInit {
 
-  offer: any
+  job: any
 
   constructor(private route: ActivatedRoute, private service: JobOffersService) { }
 
   ngOnInit(): void {
     let id = this.route.snapshot.paramMap.get('id')
-    this.service.findById(id).subscribe(data => this.offer = data)
+    this.service.findById(id).subscribe(data => this.job = data)
   }
 
 }

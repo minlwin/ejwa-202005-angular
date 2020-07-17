@@ -1,7 +1,60 @@
 <!-- Title -->
+<div class="ui raised padded segment">
 
-<!-- Image -->
+    <div class="ui grid">
 
-<!-- Other Informations -->
+        <div class="four wide column">
+            <!-- Image -->
 
-<!-- Company Informations -->
+            <div class="ui fluid image app-mb-8">
+                <img [src]="'/assets/images/' + job.company.logo" alt="">
+            </div>
+            <a href="#" class="ui animated fade fluid button">
+                <span class="visible content">Apply Job</span>
+                <span class="hidden content">Thank you</span>
+            </a>
+
+        </div>
+
+        <div class="twelve wide column">
+            <!-- Job Informations -->
+            <h2>
+                {{job.title}}
+                <span class="app-right">{{job.offerDuration}}</span>
+            </h2>
+
+            <!-- Company Informations -->
+            <h4><a [routerLink]="['/public/company', job.id]"
+                    routerLinkActive="router-link-active">{{job.company.name}}</a> </h4>
+            <p>
+                <a href="#">{{job.company.category}}</a> <br />
+                <a href="#">{{job.location}}</a> | <a href="#">{{job.jobType}}</a><br />
+
+            </p>
+
+            <p>
+                <span>{{job.summary.qualification}}</span> <br />
+                <span>{{job.summary.posts}}</span> <br />
+                <span>{{job.summary.salary}}</span>
+            </p>
+
+            <div class="ui divider"></div>
+
+            <h3>Job Description</h3>
+
+            <div class="ui list">
+                <div class="ui item" *ngFor="let item of job.descriptions">
+                    <i class="check icon"></i>
+                    <div class="content">
+                        <div class="heder">{{item.name}}</div>
+                        <div class="description">{{item.description}}</div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+
+</div>
