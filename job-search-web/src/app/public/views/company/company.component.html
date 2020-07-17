@@ -1,1 +1,103 @@
-<p>company works!</p>
+<div class="ui basic padded segment">
+
+    <div class="ui grid">
+
+        <div class="four wide column">
+            <div class="ui fluid image">
+                <img src="/assets/images/job-image.png" alt="">
+            </div>
+        </div>
+
+        <div class="twelve wide column">
+
+            <h1 class="ui header">
+                <div class="content">
+                    Company Name
+                    <div class="sub header">Company Category</div>
+                </div>
+            </h1>
+
+            <div class="ui horizontal relaxed divided list">
+                <div class="item">
+                    <div class="ui avator image">
+                        <i class="calendar icon"></i>
+                    </div>
+                    <div class="content">
+                        <div class="header">Founded</div>
+                        <div class="description">2004</div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="ui avator image">
+                        <i class="users icon"></i>
+                    </div>
+                    <div class="content">
+                        <div class="header">Employees</div>
+                        <div class="description">100 - 150</div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="ui avator image">
+                        <i class="map icon"></i>
+                    </div>
+                    <div class="content">
+                        <div class="header">Location</div>
+                        <div class="description">Yangon</div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="ui avator image">
+                        <i class="home icon"></i>
+                    </div>
+                    <div class="content">
+                        <div class="header">Web Site</div>
+                        <div class="description"><a href="#">http://test.com</a></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- About Us -->
+            <h3>About Us</h3>
+            <p>The KT Group is a private, family owned and operated diversified business enterprise which was
+                established in the 1950’s. We have grown into a modern Myanmar company that embraces the opportunities
+                for growth but also remembers our deep history and holds respect for the country and her people.</p>
+
+            <!-- Visions -->
+            <h3>Visions</h3>
+            <p>To be a world class organisation nurturing and encouraging the talents of our people who enable us to
+                grow a thriving business committed to building a modern and transparent Myanmar.
+            </p>
+
+            <h3>Job Offers</h3>
+
+            <div class="ui secondary pointing menu" id="jobMenu">
+                <a class="item" [ngClass]="{active: newJob}" (click)="changeList(company.id, true)">New Job Offers</a>
+                <a class="item" [ngClass]="{active: !newJob}" (click)="changeList(company.id, false)">Finished Job
+                    Offers</a>
+            </div>
+
+            <div class="ui tab active">
+
+                <div class="ui basic segment">
+                    <div class="ui relaxed divided list">
+
+                        <div class="item" *ngFor="let item of list">
+                            <i class="send large icon"></i>
+                            <div class="content">
+                                <div class="header">{{item.title}} <span class="app-right">2d</span></div>
+                                <div class="description">{{item.jobType}}</div>
+                                <div class="description"><span>{{item.location}}</span> |
+                                    <span>{{item.requirements}}</span>
+                                    | <span>{{item.salary}}</span></div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
