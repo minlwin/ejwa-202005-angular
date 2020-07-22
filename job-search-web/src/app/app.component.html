@@ -1,22 +1,43 @@
 <nav class="ui secondary top fixed inverted blue menu">
 
   <div class="ui container">
-    <a href="" class="item active"><i class="search icon"></i> Job Search</a>
+    <a [routerLink]="['/']" routerLinkActive="active" class="item"><i class="search icon"></i> Job Search</a>
+
+    <a [routerLink]="['/candidate/cv-form']" routerLinkActive="active" class="item" *ngIf="role == 'Candidate'"><i
+        class="address card icon"></i> CV Form</a>
+
+    <a [routerLink]="['/candidate/applications']" routerLinkActive="active" class="item" *ngIf="role == 'Candidate'"><i
+        class="list icon"></i> Applications</a>
+
+    <a [routerLink]="['/candidate/followings']" routerLinkActive="active" class="item" *ngIf="role == 'Candidate'"><i
+        class="bullhorn icon"></i> Following</a>
+
+    <a [routerLink]="['/member/messages']" routerLinkActive="active" class="item" *ngIf="role == 'Candidate'"><i
+        class="envelope icon"></i> Messages</a>
+
 
     <div class="right menu">
-      <a (click)="signInComponent.showDialog()" class="item">
+      <a (click)="signInComponent.showDialog()" class="item" *ngIf="!authenticated">
         <i class="sign in icon"></i> Sign In
       </a>
-      <a (click)="signUpComponent.showDialog()" class="item">
+      <a (click)="signUpComponent.showDialog()" class="item" *ngIf="!authenticated">
         <i class="sign in icon"></i> Sign Up
+      </a>
+
+      <a (click)="profile()" routerLinkActive="active" class="item" *ngIf="authenticated">
+        <i class="user icon"></i>
+        {{userName}}
+      </a>
+      <a (click)="signout()" class="item" *ngIf="authenticated">
+        <i class="sign out icon"></i> Sing Out
       </a>
     </div>
   </div>
 </nav>
 
-<app-sign-up></app-sign-up>
+<app-sign-up *ngIf="!authenticated"></app-sign-up>
 
-<app-sing-in></app-sing-in>
+<app-sing-in *ngIf="!authenticated"></app-sing-in>
 
 <div class="ui app-page-body container">
   <router-outlet></router-outlet>

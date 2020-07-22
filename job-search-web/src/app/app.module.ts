@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SecurityModule } from './security/security.module';
 import { JwtTokenInterceptor } from './security/services/jwt-token.interceptor';
+import { MemberModule } from './member/member.module';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { JwtTokenInterceptor } from './security/services/jwt-token.interceptor';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    SecurityModule
+    SecurityModule,
+    MemberModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtTokenInterceptor, multi: true }

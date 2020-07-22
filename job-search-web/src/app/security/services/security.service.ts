@@ -24,11 +24,15 @@ export class SecurityService {
       .pipe(tap(data => this.login = data))
   }
 
+  singOut() {
+    localStorage.clear()
+  }
+
   private set login(data: any) {
     if (data.success) {
       localStorage.setItem(LOGIN, JSON.stringify(data))
     } else {
-      localStorage.removeItem(LOGIN)
+      this.singOut()
     }
   }
 
