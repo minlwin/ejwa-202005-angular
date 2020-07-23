@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { EmployerService } from 'src/app/employer/service/employer.service';
+import { SecurityService } from 'src/app/security/services/security.service';
 import { CompanyService } from '../../services/company.service';
 
 declare let $: any
@@ -15,14 +17,26 @@ export class CompanyComponent implements OnInit {
   company: any
   list = []
   newJob: boolean = true
+  ownCompany: boolean = false
 
-  constructor(private service: CompanyService, private route: ActivatedRoute) { }
+  constructor(
+    private service: CompanyService,
+    private route: ActivatedRoute,
+    private security: SecurityService,
+    private employer: EmployerService) { }
 
   ngOnInit(): void {
     let id = this.route.snapshot.paramMap.get("id")
-    console.log(id)
 
-    this.service.findById(id).subscribe(data => this.company = data)
+    this.service.findById(id).subscribe(data => {
+      this.company = data
+
+      if (this.security.token != null && this.security.role == 'Employer') {
+        this.employer.findOwnCompanyId().subscribe(id => {
+          this.ownCompany = data.id == id
+        })
+      }
+    })
 
     this.changeList(id, true)
   }

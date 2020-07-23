@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { SecurityService } from '../../services/security.service';
 
 declare let $: any
@@ -17,7 +18,8 @@ export class SingInComponent implements OnInit {
 
   constructor(
     builder: FormBuilder,
-    private security: SecurityService
+    private security: SecurityService,
+    private router: Router
   ) {
     this.form = builder.group({
       email: ["", Validators.min(4)],
@@ -32,9 +34,10 @@ export class SingInComponent implements OnInit {
     if (this.form.valid) {
       this.security.signIn(this.form.value).subscribe(result => {
         if (result.success) {
-          // navigate homes accordint to their role
-
           $('#signInDialog').modal('hide')
+          // navigate homes accordint to their role
+          let str = (this.security.role as string).toLowerCase()
+          this.router.navigate([`/${str}`])
         } else {
           this.message = result.message
         }

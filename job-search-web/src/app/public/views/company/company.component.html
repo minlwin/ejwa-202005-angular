@@ -3,8 +3,13 @@
     <div class="ui grid">
 
         <div class="four wide column">
-            <div class="ui fluid image">
-                <img src="/assets/images/job-image.png" alt="">
+            <div class="ui fluid card">
+                <div class="image">
+                    <img src="/assets/images/job-image.png" alt="">
+                </div>
+                <div *ngIf="ownCompany" class="ui bottom attached button">
+                    <i class="pencil icon"></i> Edit Company
+                </div>
             </div>
         </div>
 

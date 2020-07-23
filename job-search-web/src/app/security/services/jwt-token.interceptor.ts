@@ -24,7 +24,6 @@ export class JwtTokenInterceptor implements HttpInterceptor {
     }
 
     return next.handle(clone).pipe(tap(event => {
-      console.log(event)
       if (event instanceof HttpResponse) {
         this.security.token = event.headers.get(TOKEN)
       }

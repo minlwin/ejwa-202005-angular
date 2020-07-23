@@ -22,6 +22,7 @@ export class AppComponent {
 
   signout() {
     this.security.singOut()
+    this.router.navigate(['/'])
   }
 
   profile() {

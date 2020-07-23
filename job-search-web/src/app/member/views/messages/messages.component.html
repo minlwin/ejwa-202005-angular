@@ -1,1 +1,65 @@
-<p>messages works!</p>
+<div class="ui padded segment">
+
+    <div class="ui header">
+        <i class="search icon"></i> Search
+    </div>
+
+    <div class="content">
+        <div class="ui form">
+            <div class="fields">
+                <div class="field">
+                    <label>Status</label>
+                    <select class="ui dropdown">
+                        <option value="0">All</option>
+                        <option value="1">New</option>
+                        <option value="2">Readed</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <label>Date From</label>
+                    <input type="date" placeholder="Date From" />
+                </div>
+                <div class="field">
+                    <label>Date To</label>
+                    <input type="date" placeholder="Date To" />
+                </div>
+                <div class="field">
+                    <label>Keyword</label>
+                    <input type="text" placeholder="Keyword">
+                </div>
+                <div class="field">
+                    <label>&nbsp;</label>
+                    <button class="ui animated blue button">
+                        <div class="visible content">Search</div>
+                        <div class="hidden content"><i class="search icon"></i></div>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<table class="ui table">
+
+    <thead>
+        <tr>
+            <th>Send Date</th>
+            <th>Status</th>
+            <th>Send User</th>
+            <th>Title</th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td>2020/07/01 10:00</td>
+            <td>
+                <i class="envelope open outline icon"></i>
+            </td>
+            <td>System</td>
+            <td>Something is going on</td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>

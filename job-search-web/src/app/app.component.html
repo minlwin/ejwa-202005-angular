@@ -3,16 +3,19 @@
   <div class="ui container">
     <a [routerLink]="['/']" routerLinkActive="active" class="item"><i class="search icon"></i> Job Search</a>
 
-    <a [routerLink]="['/candidate/cv-form']" routerLinkActive="active" class="item" *ngIf="role == 'Candidate'"><i
-        class="address card icon"></i> CV Form</a>
+    <a [routerLink]="['/candidate/cv-form']" routerLinkActive="active" class="item"
+      *ngIf="authenticated && role == 'Candidate'"><i class="address card icon"></i> CV Form</a>
 
-    <a [routerLink]="['/candidate/applications']" routerLinkActive="active" class="item" *ngIf="role == 'Candidate'"><i
-        class="list icon"></i> Applications</a>
+    <a [routerLink]="['/candidate/applications']" routerLinkActive="active" class="item"
+      *ngIf="authenticated && role == 'Candidate'"><i class="list icon"></i> Applications</a>
 
-    <a [routerLink]="['/candidate/followings']" routerLinkActive="active" class="item" *ngIf="role == 'Candidate'"><i
-        class="bullhorn icon"></i> Following</a>
+    <a [routerLink]="['/candidate/followings']" routerLinkActive="active" class="item"
+      *ngIf="authenticated && role == 'Candidate'"><i class="bullhorn icon"></i> Following</a>
 
-    <a [routerLink]="['/member/messages']" routerLinkActive="active" class="item" *ngIf="role == 'Candidate'"><i
+    <a [routerLink]="['/employer/job-offer-edit']" routerLinkActive="active" class="item"
+      *ngIf="authenticated && role == 'Employer'"><i class="plus icon"></i> Add New Job Offer</a>
+
+    <a [routerLink]="['/member/messages']" routerLinkActive="active" class="item" *ngIf="authenticated"><i
         class="envelope icon"></i> Messages</a>
 
 
@@ -35,9 +38,9 @@
   </div>
 </nav>
 
-<app-sign-up *ngIf="!authenticated"></app-sign-up>
+<app-sign-up></app-sign-up>
 
-<app-sing-in *ngIf="!authenticated"></app-sing-in>
+<app-sing-in></app-sing-in>
 
 <div class="ui app-page-body container">
   <router-outlet></router-outlet>

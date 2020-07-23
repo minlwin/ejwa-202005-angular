@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { SecurityService } from '../../services/security.service';
 
@@ -16,7 +17,7 @@ export class SignUpComponent implements OnInit {
   message: string
   form: FormGroup
 
-  constructor(builder: FormBuilder, private security: SecurityService) {
+  constructor(builder: FormBuilder, private security: SecurityService, private router: Router) {
     this.form = builder.group({
       role: 'Candidate',
       email: ['', Validators.min(4)],
@@ -49,6 +50,9 @@ export class SignUpComponent implements OnInit {
     requst.subscribe(data => {
       if (data.success) {
         $('#signUpDialog').modal('hide')
+        // navigate to home
+        let str = (this.security.role as string).toLowerCase()
+        this.router.navigate([`/${str}`])
       } else {
         this.message = data.message
       }
