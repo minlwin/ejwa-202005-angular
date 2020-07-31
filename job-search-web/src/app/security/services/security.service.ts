@@ -1,11 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { tap } from 'rxjs/operators';
+import { BASE_API } from './config';
 
 const LOGIN = "com.jdc.jobsearch.login"
 const TOKEN = "com.jdc.jobsearch.token"
 
-const AUTH_URL = "http://localhost:8080/auth"
+const AUTH_URL = `${BASE_API}/auth`
 
 @Injectable({
   providedIn: 'root'

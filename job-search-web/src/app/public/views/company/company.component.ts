@@ -32,8 +32,8 @@ export class CompanyComponent implements OnInit {
       this.company = data
 
       if (this.security.token != null && this.security.role == 'Employer') {
-        this.employer.findOwnCompanyId().subscribe(id => {
-          this.ownCompany = data.id == id
+        this.employer.findOwnCompany().subscribe(company => {
+          this.ownCompany = company.id == id
         })
       }
     })

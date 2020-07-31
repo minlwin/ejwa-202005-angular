@@ -1,1 +1,64 @@
-<p>company-edit works!</p>
+<div class="ui basic padded segment">
+
+    <div class="ui grid">
+
+        <div class="four wide column">
+            <div class="ui fluid card">
+                <div class="image">
+                    <img src="/assets/images/job-image.png" alt="">
+                </div>
+                <div class="ui bottom attached button">
+                    <i class="camera icon"></i> Upload Photo
+                </div>
+            </div>
+        </div>
+
+        <div class="twelve wide column">
+
+            <h1 class="ui header">
+                Edit Company Profile
+            </h1>
+
+            <div [formGroup]="form" class="ui form">
+                <div class="field">
+                    <label>Company Name</label>
+                    <input formControlName="name" type="text" placeholder="Enter Company Name">
+                </div>
+
+                <div class="class three fields">
+                    <div class="field">
+                        <label>Category</label>
+                        <input formControlName="category" type="text" placeholder="Enter Company Category">
+                    </div>
+                    <div class="field">
+                        <label>Founded</label>
+                        <input formControlName="founded" type="text" placeholder="Enter Founded Year">
+                    </div>
+                    <div class="field">
+                        <label>Location</label>
+                        <input formControlName="location" type="text" placeholder="Enter Company Location">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label>About Us</label>
+                    <textarea formControlName="aboutUs" cols="30" rows="4"></textarea>
+                </div>
+
+                <div class="field">
+                    <label>Visions</label>
+                    <textarea formControlName="visions" cols="30" rows="4"></textarea>
+                </div>
+
+                <div class="field">
+                    <button (click)="save()" [disabled]="!form.valid" class="ui fade animated red button">
+                        <span class="visible content">Save Company Profile</span>
+                        <span class="hidden content"><i class="save icon"></i> Save</span>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>

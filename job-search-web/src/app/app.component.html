@@ -1,7 +1,8 @@
 <nav class="ui secondary top fixed inverted blue menu">
 
   <div class="ui container">
-    <a [routerLink]="['/']" routerLinkActive="active" class="item"><i class="search icon"></i> Job Search</a>
+    <a [routerLink]="['/']" routerLinkActive="active" [routerLinkActiveOptions]="{exact : true}" class="item"><i
+        class="search icon"></i> Job Search</a>
 
     <a [routerLink]="['/candidate/cv-form']" routerLinkActive="active" class="item"
       *ngIf="authenticated && role == 'Candidate'"><i class="address card icon"></i> CV Form</a>

@@ -1,14 +1,28 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { of } from 'rxjs';
+import { BASE_API } from '../../security/services/config';
+
+const API = `${BASE_API}/companies`
 
 @Injectable({
   providedIn: 'root'
 })
 export class EmployerService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
-  findOwnCompanyId() {
-    return of(1)
+  findOwnCompany() {
+    return this.http.get<any>(`${API}/owner`)
+  }
+
+  save(data: any) {
+
+    const { id, ...dto } = data
+
+    if (id == 0) {
+      return this.http.post<any>(`${API}`, dto)
+    } else {
+      return this.http.put<any>(`${API}/${id}`, dto)
+    }
   }
 }

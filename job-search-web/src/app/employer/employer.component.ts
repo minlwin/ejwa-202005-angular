@@ -12,13 +12,13 @@ export class EmployerComponent {
 
   constructor(service: EmployerService, router: Router) {
     // find company of employer
-    service.findOwnCompanyId().subscribe(companyId => {
-      if (companyId == 0) {
+    service.findOwnCompany().subscribe(company => {
+      if (company) {
+        // if found navigate to company profile
+        router.navigate(['/public/company', company.id])
+      } else {
         // if not found navigate to edit company profile
         router.navigate(['/employer/company-edit'])
-      } else {
-        // if found navigate to company profile
-        router.navigate(['/public/company', companyId])
       }
     })
 
