@@ -60,4 +60,8 @@ export class SecurityService {
       localStorage.removeItem(TOKEN)
     }
   }
+
+  get hasOwnCompany(): boolean {
+    return this.login.role == 'Employer' && this.login.hasOwnCompany
+  }
 }

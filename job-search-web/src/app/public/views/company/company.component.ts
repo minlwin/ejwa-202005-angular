@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { EmployerService } from 'src/app/employer/service/employer.service';
 import { SecurityService } from 'src/app/security/services/security.service';
 import { CompanyService } from '../../services/company.service';
@@ -22,6 +22,7 @@ export class CompanyComponent implements OnInit {
   constructor(
     private service: CompanyService,
     private route: ActivatedRoute,
+    private router: Router,
     private security: SecurityService,
     private employer: EmployerService) { }
 
@@ -44,6 +45,10 @@ export class CompanyComponent implements OnInit {
   changeList(id: string, newJob: boolean) {
     this.newJob = newJob
     this.service.findJobsForCompany(id, newJob).subscribe(result => this.list = result)
+  }
+
+  editCompany() {
+    this.router.navigate(['/employer/company-edit', this.company.id])
   }
 
 }

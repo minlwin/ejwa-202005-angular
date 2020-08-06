@@ -42,4 +42,8 @@ export class AppComponent {
     return this.security.userName
   }
 
+  get hasOwnCompany(): boolean {
+    return this.security.hasOwnCompany
+  }
+
 }

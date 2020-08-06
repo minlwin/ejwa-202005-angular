@@ -1,26 +1,21 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { of } from 'rxjs';
+import { BASE_API } from 'src/app/security/services/config';
+
+const API = `${BASE_API}/companies`
 
 @Injectable({
   providedIn: 'root'
 })
 export class CompanyService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   findById(id: any) {
-    return of({
-      id: 1,
-      name: "SOLT Engineering Co,.Ltd.",
-      logo: "job-image.png",
-      category: "Software Development",
-      founded: '2013/04',
-      employees: '12',
-      website: 'http://www.solt-e.com',
-      about: '',
-      visions: ''
-    })
+    return this.http.get<any>(`${API}/${id}`)
   }
+
 
   findJobsForCompany(id: any, newJob: boolean) {
     return of([

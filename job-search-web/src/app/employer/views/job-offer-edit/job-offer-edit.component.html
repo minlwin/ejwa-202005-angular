@@ -1,1 +1,92 @@
-<p>job-offer-edit works!</p>
+<div class="ui padded segment">
+
+    <div class="ui grid">
+
+        <div class="four wide column">
+            <!-- Image -->
+
+            <div class="ui fluid image app-mb-8">
+                <img src="/assets/images/job-image.png" alt="">
+            </div>
+
+        </div>
+
+        <div class="twelve wide column">
+            <h3>Add New Job Offer</h3>
+
+            <form [formGroup]="form" class="ui form">
+                <div class="fields">
+
+                    <div class="six wide field">
+                        <label>Job Title</label>
+                        <input type="text" placeholder="Enter Job Title">
+                    </div>
+
+                    <div class="ten wide field">
+                        <div class="two fields">
+                            <div class="field">
+                                <label>Job Type</label>
+                                <input type="text" placeholder="Enter Job Type">
+                            </div>
+
+                            <div class="field">
+                                <label>Job Location</label>
+                                <input type="text" placeholder="Enter Job Location">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="fields">
+
+                    <div class="six wide field">
+                        <label>Positions</label>
+                        <input type="number" placeholder="Please Enter Positions">
+                    </div>
+
+                    <div class="ten wide field">
+                        <label>Qualification</label>
+                        <input type="text" placeholder="Enter Qualifications">
+                    </div>
+                </div>
+
+                <div class="fields">
+
+                    <div class="six wide field">
+                        <label>Salary</label>
+                        <input type="number" placeholder="Please Enter Salary">
+                    </div>
+
+                    <div class="ten wide field">
+                        <label>Experiances</label>
+                        <input type="text" placeholder="Enter Experiances">
+                    </div>
+                </div>
+
+                <div class="ui hidden divider"></div>
+
+                <h3>Other Informations</h3>
+                <div class="fields">
+
+                    <div class="six wide field">
+                        <label>Title</label>
+                        <input type="number" placeholder="Please Enter Title">
+                    </div>
+
+                    <div class="ten wide field">
+                        <label>Information</label>
+                        <input type="text" placeholder="Enter Information Details">
+                    </div>
+                </div>
+
+                <div class="ui hidden divider"></div>
+
+                <div class="field">
+                    <button class="ui icon green labeled button"><i class="plus icon"></i> Add</button>
+                    <button class="ui icon blue labeled button"><i class="save icon"></i> Save</button>
+                    <button class="ui icon red labeled button"><i class="send icon"></i> Publish</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

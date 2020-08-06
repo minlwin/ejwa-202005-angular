@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   templateUrl: './job-offer-edit.component.html',
@@ -7,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class JobOfferEditComponent implements OnInit {
 
-  constructor() { }
+  form: FormGroup
+
+  constructor(builder: FormBuilder) { }
 
   ngOnInit(): void {
   }

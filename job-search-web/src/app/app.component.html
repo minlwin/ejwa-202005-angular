@@ -13,8 +13,8 @@
     <a [routerLink]="['/candidate/followings']" routerLinkActive="active" class="item"
       *ngIf="authenticated && role == 'Candidate'"><i class="bullhorn icon"></i> Following</a>
 
-    <a [routerLink]="['/employer/job-offer-edit']" routerLinkActive="active" class="item"
-      *ngIf="authenticated && role == 'Employer'"><i class="plus icon"></i> Add New Job Offer</a>
+    <a [routerLink]="['/employer/job-offer-edit']" routerLinkActive="active" class="item" *ngIf="hasOwnCompany"><i
+        class="plus icon"></i> Add New Job Offer</a>
 
     <a [routerLink]="['/member/messages']" routerLinkActive="active" class="item" *ngIf="authenticated"><i
         class="envelope icon"></i> Messages</a>

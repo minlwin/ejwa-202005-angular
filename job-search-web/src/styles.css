@@ -10,3 +10,7 @@
 .app-mb-8 {
     margin-bottom: 8px !important;
 }
+
+.fields > .field > .fields {
+    margin-bottom: 0px !important;
+}

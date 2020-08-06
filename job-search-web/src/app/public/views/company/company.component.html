@@ -7,9 +7,9 @@
                 <div class="image">
                     <img src="/assets/images/job-image.png" alt="">
                 </div>
-                <div *ngIf="ownCompany" class="ui bottom attached button">
+                <a (click)="editCompany()" *ngIf="ownCompany" class="ui bottom attached button">
                     <i class="pencil icon"></i> Edit Company
-                </div>
+                </a>
             </div>
         </div>
 
@@ -17,8 +17,8 @@
 
             <h1 class="ui header">
                 <div class="content">
-                    Company Name
-                    <div class="sub header">Company Category</div>
+                    {{company.name}}
+                    <div class="sub header">{{company.category}}</div>
                 </div>
             </h1>
 
@@ -29,16 +29,16 @@
                     </div>
                     <div class="content">
                         <div class="header">Founded</div>
-                        <div class="description">2004</div>
+                        <div class="description">{{company.founded}}</div>
                     </div>
                 </div>
-                <div class="item">
+                <div class="item" *ngIf="company.size">
                     <div class="ui avator image">
                         <i class="users icon"></i>
                     </div>
                     <div class="content">
                         <div class="header">Employees</div>
-                        <div class="description">100 - 150</div>
+                        <div class="description">{{company.size}}</div>
                     </div>
                 </div>
                 <div class="item">
@@ -47,31 +47,27 @@
                     </div>
                     <div class="content">
                         <div class="header">Location</div>
-                        <div class="description">Yangon</div>
+                        <div class="description">{{company.location}}</div>
                     </div>
                 </div>
-                <div class="item">
+                <div class="item" *ngIf="company.homePage">
                     <div class="ui avator image">
                         <i class="home icon"></i>
                     </div>
                     <div class="content">
                         <div class="header">Web Site</div>
-                        <div class="description"><a href="#">http://test.com</a></div>
+                        <div class="description"><a href="#">{{company.homePage}}</a></div>
                     </div>
                 </div>
             </div>
 
             <!-- About Us -->
             <h3>About Us</h3>
-            <p>The KT Group is a private, family owned and operated diversified business enterprise which was
-                established in the 1950’s. We have grown into a modern Myanmar company that embraces the opportunities
-                for growth but also remembers our deep history and holds respect for the country and her people.</p>
+            <p>{{company.aboutUs}}</p>
 
             <!-- Visions -->
             <h3>Visions</h3>
-            <p>To be a world class organisation nurturing and encouraging the talents of our people who enable us to
-                grow a thriving business committed to building a modern and transparent Myanmar.
-            </p>
+            <p>{{company.visions}}</p>
 
             <h3>Job Offers</h3>
 

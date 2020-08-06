@@ -8,6 +8,7 @@ import { JobOfferEditComponent } from './views/job-offer-edit/job-offer-edit.com
 const routes: Routes = [
   { path: '', component: EmployerComponent },
   { path: 'company-edit', component: CompanyEditComponent },
+  { path: 'company-edit/:id', component: CompanyEditComponent },
   { path: 'job-offer-edit', component: JobOfferEditComponent }
 ];
 
