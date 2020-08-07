@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { CompanyService } from 'src/app/public/services/company.service';
+import { SecurityService } from 'src/app/security/services/security.service';
 import { EmployerService } from '../../service/employer.service';
 
 @Component({
@@ -16,6 +17,7 @@ export class CompanyEditComponent implements OnInit {
 
   constructor(builder: FormBuilder,
     private service: EmployerService,
+    private security: SecurityService,
     private companies: CompanyService,
     private route: ActivatedRoute,
     private router: Router) {
@@ -47,6 +49,7 @@ export class CompanyEditComponent implements OnInit {
 
   save() {
     this.service.save(this.form.value).subscribe(data => {
+      this.security.createdCompany(data.id)
       this.router.navigate(['/public/company', data.id])
     })
   }

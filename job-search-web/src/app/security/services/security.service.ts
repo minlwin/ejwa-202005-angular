@@ -25,6 +25,12 @@ export class SecurityService {
       .pipe(tap(data => this.login = data))
   }
 
+  createdCompany(company: any) {
+    let login = this.login
+    login.company = company
+    this.login = login
+  }
+
   singOut() {
     localStorage.clear()
   }
@@ -35,6 +41,10 @@ export class SecurityService {
     } else {
       this.singOut()
     }
+  }
+
+  get company() {
+    return this.login.company
   }
 
   private get login(): any {
@@ -62,6 +72,6 @@ export class SecurityService {
   }
 
   get hasOwnCompany(): boolean {
-    return this.login.role == 'Employer' && this.login.hasOwnCompany
+    return null != this.login && this.login.role == 'Employer' && this.login.company != '0'
   }
 }
