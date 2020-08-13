@@ -66,15 +66,19 @@
             <p>{{company.aboutUs}}</p>
 
             <!-- Visions -->
-            <h3>Visions</h3>
-            <p>{{company.visions}}</p>
+            <h3 *ngIf="company.visions">Visions</h3>
+            <p *ngIf="company.visions">{{company.visions}}</p>
 
             <h3>Job Offers</h3>
 
             <div class="ui secondary pointing menu" id="jobMenu">
-                <a class="item" [ngClass]="{active: newJob}" (click)="changeList(company.id, true)">New Job Offers</a>
-                <a class="item" [ngClass]="{active: !newJob}" (click)="changeList(company.id, false)">Finished Job
-                    Offers</a>
+                <a class="item" [ngClass]="{active: status == 'Published'}"
+                    (click)="changeList(company.id, 'Published')">New Jobs</a>
+                <a *ngIf="ownCompany" class="item" [ngClass]="{active: status == 'Saved'}"
+                    (click)="changeList(company.id, 'Saved')">Save
+                    Jobs</a>
+                <a class="item" [ngClass]="{active: status == 'Finish'}"
+                    (click)="changeList(company.id, 'Finish')">Finished Jobs</a>
             </div>
 
             <div class="ui tab active">

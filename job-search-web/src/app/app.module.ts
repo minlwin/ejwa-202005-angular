@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { SecurityModule } from './security/security.module';
 import { JwtTokenInterceptor } from './security/services/jwt-token.interceptor';
 import { MemberModule } from './member/member.module';
+import { ServiceModule } from './service/service.module';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { MemberModule } from './member/member.module';
     BrowserModule,
     AppRoutingModule,
     SecurityModule,
-    MemberModule
+    MemberModule,
+    ServiceModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtTokenInterceptor, multi: true }

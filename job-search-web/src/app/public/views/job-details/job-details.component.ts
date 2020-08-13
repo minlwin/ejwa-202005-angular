@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { JobOffersService } from '../../services/job-offers.service';
+import { PublicJobService } from '../../../service/public/public-job.service';
 
 @Component({
   templateUrl: './job-details.component.html',
@@ -11,7 +11,7 @@ export class JobDetailsComponent implements OnInit {
 
   job: any
 
-  constructor(private route: ActivatedRoute, private service: JobOffersService) { }
+  constructor(private route: ActivatedRoute, private service: PublicJobService) { }
 
   ngOnInit(): void {
     let id = this.route.snapshot.paramMap.get('id')

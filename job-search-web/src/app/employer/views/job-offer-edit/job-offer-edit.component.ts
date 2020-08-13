@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { SecurityService } from 'src/app/security/services/security.service';
-import { JobOfferService } from '../../service/job-offer.service';
+import { JobOfferService } from '../../../service/auth/job-offer.service';
 
 @Component({
   templateUrl: './job-offer-edit.component.html',

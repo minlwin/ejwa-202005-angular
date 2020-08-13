@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { map } from 'rxjs/operators';
-import { CompanyService } from 'src/app/public/services/company.service';
 import { SecurityService } from 'src/app/security/services/security.service';
-import { EmployerService } from '../../service/employer.service';
+import { EmployerService } from '../../../service/auth/employer.service';
+import { PublicCompanyService } from '../../../service/public/public-company.service';
 
 @Component({
   templateUrl: './company-edit.component.html',
@@ -18,7 +18,7 @@ export class CompanyEditComponent implements OnInit {
   constructor(builder: FormBuilder,
     private service: EmployerService,
     private security: SecurityService,
-    private companies: CompanyService,
+    private companies: PublicCompanyService,
     private route: ActivatedRoute,
     private router: Router) {
 

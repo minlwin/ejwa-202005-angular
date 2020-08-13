@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { JobOffersService } from './services/job-offers.service';
+import { PublicJobService } from '../service/public/public-job.service';
 
 @Component({
   selector: 'app-public',
@@ -14,9 +14,9 @@ export class PublicComponent implements OnInit {
   form: FormGroup
   list = []
 
-  constructor(builder: FormBuilder, private service: JobOffersService, private router: Router) {
+  constructor(builder: FormBuilder, private service: PublicJobService, private router: Router) {
     this.form = builder.group({
-      job: "",
+      jobType: "",
       location: ""
     })
   }

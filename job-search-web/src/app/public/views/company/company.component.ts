@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { EmployerService } from 'src/app/employer/service/employer.service';
 import { SecurityService } from 'src/app/security/services/security.service';
-import { CompanyService } from '../../services/company.service';
+import { PublicJobService } from 'src/app/service/public/public-job.service';
+import { EmployerService } from '../../../service/auth/employer.service';
+import { PublicCompanyService } from '../../../service/public/public-company.service';
 
 declare let $: any
 
@@ -16,11 +17,12 @@ export class CompanyComponent implements OnInit {
 
   company: any
   list = []
-  newJob: boolean = true
+  status: string
   ownCompany: boolean = false
 
   constructor(
-    private service: CompanyService,
+    private service: PublicCompanyService,
+    private jobs: PublicJobService,
     private route: ActivatedRoute,
     private router: Router,
     private security: SecurityService,
@@ -39,12 +41,15 @@ export class CompanyComponent implements OnInit {
       }
     })
 
-    this.changeList(id, true)
+    this.changeList(id, 'Published')
   }
 
-  changeList(id: string, newJob: boolean) {
-    this.newJob = newJob
-    this.service.findJobsForCompany(id, newJob).subscribe(result => this.list = result)
+  changeList(id: string, status: string) {
+    this.status = status
+    this.jobs.searchForCompany(id, status).subscribe(result => {
+      this.list = result
+      console.log(result)
+    })
   }
 
   editCompany() {
